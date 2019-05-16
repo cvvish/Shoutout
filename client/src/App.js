@@ -16,8 +16,24 @@ class App extends Component {
             .catch(err => err);
     }
 
+    postcallAPI() {
+      var url="http://localhost:9000/testpostAPI";
+      var data = {userName:"Vishwanth"};
+      fetch(url, {
+        method: 'POST', // or 'PUT'
+        body: JSON.stringify(data), // data can be `string` or {object}!
+        headers:{
+          'Content-Type': 'application/json'
+        }
+      }).then(res => res.json())
+      .then(response => console.log('Success:', JSON.stringify(response)))
+      .catch(error => console.error('Error:', error));
+
+    }
+
     componentDidMount() {
         this.callAPI();
+        this.postcallAPI();
     }
 
     render() {
