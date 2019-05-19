@@ -9,7 +9,7 @@ const minutes = 5;
 const postLimiter = new RateLimit({
   windowMs: minutes * 60 * 1000,
   max: 100,
-  delayMs: 0,
+  delayMs: 0, 
   handler: (req, res) => {
     res.status(429).json({ success: false, msg: `You made too many requests. Please try again after ${minutes} minutes.` });
   }

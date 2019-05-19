@@ -10,17 +10,17 @@ class ShowUserData extends Component {
     password:''
     };
     getData(){
-      let obj = {}
       axios.get(`http://localhost:9000/users/getdata`)
         .then(res => {
-          this.setState({name:res.data[0].name},)
+          console.log(res.data[0].name+","+res.data[0].emailId+",");
+
         })
 
 console.log(this.state.name);
     }
     componentDidMount() {
       this.getData();
-
+}
     render() {
       return (
         <div className="wrapper">
