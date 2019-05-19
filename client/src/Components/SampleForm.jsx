@@ -26,7 +26,7 @@ class SampleForm extends Component {
             />
               <br/>
             <Form.Input
-              label="Email di "
+              label="Email ID"
               name="emailId"
               value={this.state.emailId}
               onChange={this.handleemailId}
@@ -54,12 +54,11 @@ class SampleForm extends Component {
         password: this.state.password,
       };
       console.log(dataToSend);
-      // this.props.history.push('/show-data');
 
           var url="http://localhost:9000/users";
           fetch(url, {
-            method: 'POST', // or 'PUT'
-            body: JSON.stringify(dataToSend), // data can be `string` or {object}!
+            method: 'POST',
+            body: JSON.stringify(dataToSend),
             headers:{
               'Content-Type': 'application/json'
             }

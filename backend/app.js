@@ -5,14 +5,14 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require("cors");
 var mongoose = require('mongoose');
+const {mongoKey}=require('./Config/Mongokey');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var testAPIRouter = require("./routes/testAPI");
 var testpostAPIRouter = require('./routes/testpostAPI');
 
 var app = express();
-var mongooseDB='mongodb+srv://AdminVish:nodejs@123@cluster0-imgq3.mongodb.net/Shoutout?retryWrites=true'
-mongoose.connect(mongooseDB,{useNewUrlParser: true});
+mongoose.connect(mongoKey,{useNewUrlParser: true});
 var db=mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 

@@ -3,6 +3,7 @@ import logo from "./logo.svg";
 import "./App.css";
 import Users from './Components/Users';
 import SampleForm from './Components/SampleForm';
+import ShowUserData from './Components/ShowUserData';
 import {Route, NavLink, BrowserRouter} from "react-router-dom";
 
 
@@ -46,11 +47,14 @@ class App extends Component {
       <h1>Basic crud example</h1>
           <ul className="header">
       <li><NavLink to="/SampleForm">SampleForm</NavLink></li>
+      <li><NavLink to="/ShowUserData">ShowUserData</NavLink></li>
+
           </ul>
      <div className="content"></div>
     </div>
     <div className="content">
 <Route path="/SampleForm" component={SampleForm} />
+<Route path="/ShowUserData" component={ShowUserData} />
 </div>
     </BrowserRouter>
         );

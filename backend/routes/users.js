@@ -7,13 +7,15 @@ const userData = require('../models/UserData');
 
 const minutes = 5;
 const postLimiter = new RateLimit({
-  windowMs: minutes * 60 * 1000, // milliseconds
-  max: 100, // Limit each IP to 100 requests per windowMs
-  delayMs: 0, // Disable delaying - full speed until the max limit is reached
+  windowMs: minutes * 60 * 1000,
+  max: 100,
+  delayMs: 0,
   handler: (req, res) => {
     res.status(429).json({ success: false, msg: `You made too many requests. Please try again after ${minutes} minutes.` });
   }
 });
+//Controller to insert data into the database
+//INSERT into
 router.post('/', function(req, res, next) {
   let newUser = new userData({
      name: req.body.name,
@@ -47,11 +49,22 @@ router.post('/', function(req, res, next) {
            res.status(400).json({ success: false, msg: err.errors.password.message });
            return;
          }
-         // Show failed if all else fails for some reasons
          res.status(500).json({ success: false, msg: `Something went wrong. ${err}` });
        }
      });
 console.log(result);
 });
+//Controller to get all data from Database
+//SELECT all
+router.get('/getData', (req, res) => {
+  userData.find({})
+    .then((result) => {
+      res.json(result);
+    })
+    .catch((err) => {
+      res.status(500).json({ success: false, msg: `Something went wrong. ${err}` });
+    });
+})
+
 
 module.exports = router;
