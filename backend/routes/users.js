@@ -16,11 +16,10 @@ const postLimiter = new RateLimit({
 });
 router.post('/', function(req, res, next) {
   let newUser = new userData({
-     name: "vidhya",
-     emailId: "vidhya.vijay94@gmail.com",
-     password: "password123"
+     name: req.body.name,
+     emailId: req.body.emailId,
+     password: req.body.password
    });
-
    newUser.save()
      .then((result) => {
        res.json({

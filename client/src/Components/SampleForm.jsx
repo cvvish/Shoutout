@@ -6,39 +6,39 @@ import { withRouter } from 'react-router-dom';
 class SampleForm extends Component {
     state = {
       data: {},
-      firstName: '',
-      lastName: '',
-      mobileNumber: '',
+      name: '',
+      emailId: '',
+      password: '',
     };
-    handleFirstName = e => this.setState({ firstName: e.target.value });
-    handleLastName = e => this.setState({ lastName: e.target.value });
-    handleMobileNumber = e => this.setState({ mobileNumber: e.target.value });
+    handlename = e => this.setState({ name: e.target.value });
+    handleemailId = e => this.setState({ emailId: e.target.value });
+    handlepassword = e => this.setState({ password: e.target.value });
     render() {
       return (
         <div className="SampleForm" >
           <header className="App-header">
             <Form.Input
               label="First Name "
-              name="firstName"
-              value={this.state.firstName}
-              onChange={this.handleFirstName}
+              name="name"
+              value={this.state.name}
+              onChange={this.handlename}
               placeholder="Vishwanth"
             />
               <br/>
             <Form.Input
-              label="Last Name "
-              name="lastName"
-              value={this.state.lastName}
-              onChange={this.handleLastName}
-              placeholder="Venkatesh"
+              label="Email di "
+              name="emailId"
+              value={this.state.emailId}
+              onChange={this.handleemailId}
+              placeholder="abc@gmail.com"
             />
             <br />
             <Form.Input
-              label="PH Number"
-              name="mobileNumber"
-              value={this.state.mobileNumber}
-              onChange={this.handleMobileNumber}
-              placeholder="9994943027"
+              label="password"
+              name="password"
+              value={this.state.password}
+              onChange={this.handlepassword}
+              placeholder="******"
             />
             <br />
             <Button onClick={() => this.sendData()}>Submit</Button>
@@ -49,14 +49,14 @@ class SampleForm extends Component {
     }
     sendData = () => {
       const dataToSend = {
-        firstName: this.state.firstName,
-        lastName: this.state.lastName,
-        mobileNumber: this.state.mobileNumber,
+        name: this.state.name,
+        emailId: this.state.emailId,
+        password: this.state.password,
       };
       console.log(dataToSend);
       // this.props.history.push('/show-data');
 
-          var url="http://localhost:9000/testpostAPI";
+          var url="http://localhost:9000/users";
           fetch(url, {
             method: 'POST', // or 'PUT'
             body: JSON.stringify(dataToSend), // data can be `string` or {object}!
