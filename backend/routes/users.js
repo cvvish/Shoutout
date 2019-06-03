@@ -2,57 +2,71 @@ var express = require('express');
 var router = express.Router();
 const RateLimit = require('express-rate-limit');
 const mongoose = require('mongoose');
-
+const bcrypt = require('bcrypt');
 const userData = require('../models/UserData');
-
 const minutes = 5;
 const postLimiter = new RateLimit({
   windowMs: minutes * 60 * 1000,
   max: 100,
-  delayMs: 0, 
+  delayMs: 0,
   handler: (req, res) => {
     res.status(429).json({ success: false, msg: `You made too many requests. Please try again after ${minutes} minutes.` });
   }
 });
-//Controller to insert data into the database
-//INSERT into
-router.post('/', function(req, res, next) {
-  let newUser = new userData({
-     name: req.body.name,
-     emailId: req.body.emailId,
-     password: req.body.password
+
+
+router.post('/', function(req, res) {
+   bcrypt.hash(req.body.password, 10, function(err, hash){
+      if(err) {
+         return res.status(500).json({
+            error: err
+         });
+      }
+      else {
+         const newUser = new userData({
+            name:req.body.name,
+            emailId: req.body.emailId,
+            password: hash
+         });
+         newUser.save().then(function(result) {
+            console.log(result);
+            res.status(200).json({
+               success: 'New user has been created'
+            });
+         }).catch(error => {
+            res.status(500).json({
+               error: err
+            });
+         });
+      }
    });
-   newUser.save()
-     .then((result) => {
-       res.json({
-         success: true,
-         msg: `Successfully added!`,
-         result: {
-           _id: result._id,
-           name: result.name,
-           emailId: result.emailId,
-           password: result.password
+})
+
+router.post('/signin', function(req, res){
+   userData.findOne({emailId: req.body.emailId})
+   .exec()
+   .then(function(userData) {
+      bcrypt.compare(req.body.password, userData.password, function(err, result){
+         if(err) {
+            return res.status(401).json({
+               failed: 'Unauthorized Access'
+            });
          }
-       });
-     })
-     .catch((err) => {
-       if (err.errors) {
-         if (err.errors.name) {
-           res.status(400).json({ success: false, msg: err.errors.name.message });
-           return;
+         if(result) {
+            return res.status(200).json({
+               success: 'Welcome to the JWT Auth'
+            });
          }
-         if (err.errors.email) {
-           res.status(400).json({ success: false, msg: err.errors.emailId.message });
-           return;
-         }
-         if (err.errors.age) {
-           res.status(400).json({ success: false, msg: err.errors.password.message });
-           return;
-         }
-         res.status(500).json({ success: false, msg: `Something went wrong. ${err}` });
-       }
-     });
-console.log(result);
+         return res.status(401).json({
+            failed: 'Unauthorized Access'
+         });
+      });
+   })
+   .catch(error => {
+      res.status(500).json({
+         error: error
+      });
+   });;
 });
 //Controller to get all data from Database
 //SELECT all

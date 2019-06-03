@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Form, Button } from 'semantic-ui-react';
 import { withRouter } from 'react-router-dom';
+import { postRequesttoUsers } from '../Config/UrlProperties';
+
 
 
 class SampleForm extends Component {
@@ -54,9 +56,9 @@ class SampleForm extends Component {
         password: this.state.password,
       };
       console.log(dataToSend);
+      console.log(postRequesttoUsers);
 
-          var url="http://localhost:9000/users";
-          fetch(url, {
+          fetch(postRequesttoUsers, {
             method: 'POST',
             body: JSON.stringify(dataToSend),
             headers:{

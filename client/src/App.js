@@ -2,7 +2,10 @@ import React, { Component } from "react";
 import "./App.css";
 import SampleForm from './Components/SampleForm';
 import ShowUserData from './Components/ShowUserData';
+import InvestorRegistrationShow from './Components/InvestorRegistration/InvesterRegistrationShow';
 import {Route, NavLink, BrowserRouter} from "react-router-dom";
+
+
 
 
 class App extends Component {
@@ -14,13 +17,14 @@ class App extends Component {
           <ul className="header">
       <li><NavLink to="/SampleForm">SampleForm</NavLink></li>
       <li><NavLink to="/ShowUserData">ShowUserData</NavLink></li>
-
+      <li><NavLink to="/InvestorRegistrationShow">InvestorRegistrationShow</NavLink></li>
           </ul>
      <div className="content"></div>
     </div>
     <div className="content">
 <Route path="/SampleForm" component={SampleForm} />
 <Route path="/ShowUserData" component={ShowUserData} />
+<Route path="/InvestorRegistrationShow" component={InvestorRegistrationShow} />
 </div>
     </BrowserRouter>
         );

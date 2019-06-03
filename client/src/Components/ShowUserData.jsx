@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Table } from 'semantic-ui-react';
 import axios from 'axios';
+import { getRequestfromUsers } from '../Config/UrlProperties';
 
 class ShowUserData extends Component {
     state = {
@@ -10,7 +11,7 @@ class ShowUserData extends Component {
     password:''
     };
     getData(){
-      axios.get(`http://localhost:9000/users/getdata`)
+      axios.get(getRequestfromUsers)
         .then(res => {
           console.log(res.data[0].name+","+res.data[0].emailId+",");
 
