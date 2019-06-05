@@ -5,14 +5,18 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require("cors");
 var mongoose = require('mongoose');
-const {mongoKey}=require('./Config/Mongokey');
+const ENV = require('dotenv');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var testAPIRouter = require("./routes/testAPI");
 var testpostAPIRouter = require('./routes/testpostAPI');
+var conf = require('./config.js');
+
 
 var app = express();
-mongoose.connect(mongoKey,{useNewUrlParser: true});
+ENV.config()
+mongoose.connect(process.env.MONGO_KEY,{useNewUrlParser: true});
+console.log(conf.get('ip'))
 var db=mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 

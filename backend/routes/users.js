@@ -34,6 +34,7 @@ router.post('/', function(req, res) {
                success: 'New user has been created'
             });
          }).catch(error => {
+            console.log("i am here");
             res.status(500).json({
                error: err
             });
@@ -45,8 +46,8 @@ router.post('/', function(req, res) {
 router.post('/signin', function(req, res){
    userData.findOne({emailId: req.body.emailId})
    .exec()
-   .then(function(userData) {
-      bcrypt.compare(req.body.password, userData.password, function(err, result){
+   .then(function(newUser) {
+      bcrypt.compare(req.body.password, newUser.password, function(err, result){
          if(err) {
             return res.status(401).json({
                failed: 'Unauthorized Access'

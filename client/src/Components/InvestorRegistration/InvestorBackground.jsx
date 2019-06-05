@@ -35,6 +35,7 @@ export class InvestorBackground extends React.Component {
           </label>
         </div>
       </div>
+      
     )
   }
 }
