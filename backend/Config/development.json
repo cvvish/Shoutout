@@ -1,4 +1,6 @@
 {
     "port": "9000",
-    "ip": "127.0.0.1"
+    "ip": "127.0.0.1",
+    "MONGO_KEY": "mongodb+srv://AdminVish:nodejs@123@cluster0-imgq3.mongodb.net/Shoutout?retryWrites=true",
+    "secretKey": "nodeRestApi"
   }

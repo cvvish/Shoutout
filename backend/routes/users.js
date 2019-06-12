@@ -1,9 +1,9 @@
 var express = require('express');
 var router = express.Router();
 const RateLimit = require('express-rate-limit');
-const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const userData = require('../models/UserData');
+const jwt = require('jsonwebtoken');
 const minutes = 5;
 const postLimiter = new RateLimit({
   windowMs: minutes * 60 * 1000,
@@ -16,13 +16,6 @@ const postLimiter = new RateLimit({
 
 
 router.post('/', function(req, res) {
-   bcrypt.hash(req.body.password, 10, function(err, hash){
-      if(err) {
-         return res.status(500).json({
-            error: err
-         });
-      }
-      else {
          const newUser = new userData({
             name:req.body.name,
             emailId: req.body.emailId,
@@ -32,16 +25,17 @@ router.post('/', function(req, res) {
             console.log(result);
             res.status(200).json({
                success: 'New user has been created'
-            });
+            });   
          }).catch(error => {
             console.log("i am here");
             res.status(500).json({
                error: err
             });
          });
-      }
+      
    });
-})
+
+
 
 router.post('/signin', function(req, res){
    userData.findOne({emailId: req.body.emailId})

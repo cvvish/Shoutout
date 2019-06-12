@@ -27,6 +27,6 @@ var env = conf.get('env');
 conf.loadFile('./config/' + env + '.json');
 
 // Perform validation
-conf.validate({strict: true});
+
 
 module.exports = conf;

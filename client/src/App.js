@@ -3,6 +3,7 @@ import "./App.css";
 import SampleForm from './Components/SampleForm';
 import ShowUserData from './Components/ShowUserData';
 import InvestorRegistrationShow from './Components/InvestorRegistration/InvesterRegistrationShow';
+import LogIn from './Components/LogIn'
 import {Route, NavLink, BrowserRouter} from "react-router-dom";
 
 
@@ -13,18 +14,13 @@ class App extends Component {
         return (
           <BrowserRouter>
     <div>
-      <h1>Basic crud example</h1>
-          <ul className="header">
-      <li><NavLink to="/SampleForm">SampleForm</NavLink></li>
-      <li><NavLink to="/ShowUserData">ShowUserData</NavLink></li>
-      <li><NavLink to="/InvestorRegistrationShow">InvestorRegistrationShow</NavLink></li>
-          </ul>
      <div className="content"></div>
     </div>
     <div className="content">
-<Route path="/SampleForm" component={SampleForm} />
+<Route path="/register" component={SampleForm} />
 <Route path="/ShowUserData" component={ShowUserData} />
 <Route path="/InvestorRegistrationShow" component={InvestorRegistrationShow} />
+<Route path="/login" component={LogIn} />
 </div>
     </BrowserRouter>
         );
