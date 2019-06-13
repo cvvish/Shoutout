@@ -142,3 +142,23 @@
 {"message":"::1 - - [12/Jun/2019:00:57:39 +0000] \"POST /userdata/authenticate HTTP/1.1\" 200 419 \"http://localhost:3000/login\" \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36\"\n","level":"info"}
 {"message":"connection disconnected","level":"info"}
 {"message":"Mongoose connection is open t","level":"info"}
+{"message":"connection disconnected","level":"info"}
+{"message":"Mongoose connection is open t","level":"info"}
+{"message":"connection disconnected","level":"info"}
+{"message":"Mongoose connection is open t","level":"info"}
+{"message":"connection disconnected","level":"info"}
+{"message":"Mongoose connection is open t","level":"info"}
+{"message":"connection disconnected","level":"info"}
+{"message":"Mongoose connection is open t","level":"info"}
+{"message":"connection disconnected","level":"info"}
+{"message":"Mongoose connection is open t","level":"info"}
+{"message":"connection disconnected","level":"info"}
+{"message":"Mongoose connection is open t","level":"info"}
+{"message":"connection disconnected","level":"info"}
+{"message":"Mongoose connection is open t","level":"info"}
+{"message":"connection disconnected","level":"info"}
+{"message":"Mongoose connection is open t","level":"info"}
+{"message":"connection disconnected","level":"info"}
+{"message":"Mongoose connection is open t","level":"info"}
+{"message":"connection disconnected","level":"info"}
+{"message":"Mongoose connection is open t","level":"info"}
